@@ -1,0 +1,15 @@
+www.toybox-laravel.test {
+    redir https://toybox-laravel.test{uri} 301
+}
+
+toybox-laravel.test {
+    root * APP_PATH/public
+    encode zstd gzip
+    file_server
+    php_fastcgi unix//run/php/php8.2-fpm.sock
+
+    log {
+        output file APP_PATH/storage/logs/caddy-access.log
+    }
+
+}
